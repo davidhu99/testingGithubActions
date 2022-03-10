@@ -15,7 +15,7 @@ on:
     # include ready_for_review
     types: [opened, synchronize, reopened, ready_for_review]
 env:
-  LATEST_MASTER_HASH: ${{ github.event.pull_request.base.sha }}
+  LATEST_MASTER_HASH: ${{ github.event.pull_request.head.sha }}
 
 jobs:
   get-version:
