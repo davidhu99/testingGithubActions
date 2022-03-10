@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 env:
-  LATEST_MASTER_HASH: ${{ github.event.pull_request.head.sha }}
+  LATEST_MASTER_HASH: ${{ github.sha }}
 
 jobs:
   get-version:
