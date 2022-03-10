@@ -1,21 +1,12 @@
 name: get-version
 
 on:
-#   push:
-#     tags:
-#       - 'v*'
-
   push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
-    # The default types are opened, synchronize, and reopened: we want to also
-    # include ready_for_review
-    types: [opened, synchronize, reopened, ready_for_review]
+    tags:
+      - 'v*'
+
 env:
-  LATEST_MASTER_HASH: ${{ github.event.pull_request.base.sha }}
+  LATEST_MASTER_HASH: ${{ github.event.pull_request.head.sha }}
 
 jobs:
   get-version:
