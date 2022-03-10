@@ -1,21 +1,12 @@
 name: get-version
 
 on:
-#   push:
-#     tags:
-#       - 'v*'
-
   push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
-    # The default types are opened, synchronize, and reopened: we want to also
-    # include ready_for_review
-    types: [opened, synchronize, reopened, ready_for_review]
+    tags:
+      - 'v*'
+
 env:
-  LATEST_MASTER_HASH: ${{ github.event.pull_request.base.sha }}
+  LATEST_MASTER_HASH: ${{ github.event.pull_request.head.sha }}
 
 jobs:
   get-version:
@@ -24,10 +15,12 @@ jobs:
     - uses: actions/checkout@v2
       with:
           ref: ${{ github.head_ref }}
-
+    - name: Show GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - name: Get version
       run: |
-        echo ${{ github.event.pull_request.head.sha }}
         chmod +x get-version.py
         ./get-version.py ${{ env.LATEST_MASTER_HASH }}
     - name: Commit and push files
