@@ -7,6 +7,7 @@ on:
 
 env:
   LATEST_MASTER_HASH: ${{ github.sha }}
+  ROTRIEVER_VERS: ${{ github.ref_name}}
 
 jobs:
   get-version:
@@ -22,7 +23,7 @@ jobs:
     - name: Get version
       run: |
         chmod +x get-version.py
-        ./get-version.py ${{ env.LATEST_MASTER_HASH }}
+        ./get-version.py ${{ env.LATEST_MASTER_HASH }} ${{ env.ROTRIEVER_VERS }}
     - name: Commit and push files
       run: |
         git config --global user.name 'github-actions-bot'
