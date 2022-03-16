@@ -7,3 +7,4 @@ if __name__ == "__main__":
 		f.write(hash)
 		f.write('\n')
 		f.write(sys.argv[2])
+	print('hello world')
