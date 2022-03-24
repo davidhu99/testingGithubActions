@@ -2,7 +2,7 @@ name: get-version
 
 on:
   release:
-    types: [published]
+    types: [released]
     
 env:
   LATEST_MASTER_HASH: ${{ github.sha }}
