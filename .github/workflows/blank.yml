@@ -1,9 +1,10 @@
 name: get-version
 
 on:
-  release:
-    types: [released]
-    
+  push:
+    tags:
+      - 'v*'
+      
 env:
   LATEST_MASTER_HASH: ${{ github.sha }}
   ROTRIEVER_VERS: ${{ github.ref_name}}
